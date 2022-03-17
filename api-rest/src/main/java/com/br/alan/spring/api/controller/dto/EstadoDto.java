@@ -2,11 +2,9 @@ package com.br.alan.spring.api.controller.dto;
 
 import com.br.alan.spring.api.modelo.Estado;
 import com.br.alan.spring.api.modelo.Regiao;
+import org.springframework.data.domain.Page;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-public class EstadoDto {//nessa classe é onde filtra os dados a serem mostrados para o usuario
+public class EstadoDto {
 
     private Long id;
     private String nome;
@@ -24,8 +22,8 @@ public class EstadoDto {//nessa classe é onde filtra os dados a serem mostrados
         this.area = estado.getArea();
     }
 
-    public static List<EstadoDto> converte(List<Estado> estados) {
-        return estados.stream().map(EstadoDto:: new).collect(Collectors.toList());
+    public static Page<EstadoDto> converte(Page<Estado> estados) {
+        return estados.map(EstadoDto::new);
     }
 
     public Long getId() {
