@@ -25,7 +25,7 @@ public class EstadoController {
 
     @GetMapping
     public Page<EstadoDto> listar(@RequestParam(required = false) String nome,
-                                  @PageableDefault(sort = "id",direction = Sort.Direction.ASC, page = 0, size = 13) Pageable pagina) {
+                                  @PageableDefault(sort = "id",direction = Sort.Direction.ASC, page = 0, size = 27) Pageable pagina) {
 
         if (nome == null) {
             Page<Estado> estados = estadoRepository.findAll(pagina);

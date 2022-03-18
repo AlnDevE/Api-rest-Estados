@@ -1,0 +1,143 @@
+openapi: 3.0.1
+info: 
+  title: API REST Estados
+  description: Api para listagem e filtragem dos estados brasileiros
+  version: 0.0.1
+  contact:
+    name: Suporte
+    email: alan.silva.pb@compasso.com.br
+servers: 
+- url: http://localhost:8080
+  description: Api de teste
+paths:
+  /api/states:
+    get:
+      summary: Lista 1 página contendo os estados Brasileiros.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  nome:
+                    type: string
+                  capital:
+                    type: string
+                  populacao:
+                    type: integer
+                  regiao:
+                    type: string
+                  area:
+                    type: integer
+    post:
+      summary: Cria um novo Estado
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                regiao:
+                  type: string
+                populacao:
+                  type: integer
+                capital:
+                  type: string
+                area:
+                  type: integer
+                
+              
+      responses:
+        201:
+          description: Criado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object  
+                properties:
+                  id:
+                    type: integer
+                  nome:
+                    type: string
+                  capital:
+                    type: string
+                  populacao:
+                    type: integer
+                  regiao:
+                    type: string
+                  area:
+                    type: integer
+                  
+        400:
+          description: Região Inválida
+  
+  /api/states/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: integer
+        required: true  
+    get:
+      summary: "Lista o estado vinculado ao id passado no parametro"
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  nome:
+                    type: string
+                  capital:
+                    type: string
+                  populacao:
+                    type: integer
+                  regiao:
+                    type: string
+                  area:
+                    type: integer
+        404:
+          description: Id não encontrado
+          content:
+            application/json:
+              example: "Not found"
+    delete:
+      responses:
+        200: 
+          description: Deletado com sucesso
+        500:
+          description: Id inexistente
+  
+        
+      
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+          
