@@ -85,7 +85,7 @@ paths:
           type: integer
         required: true  
     get:
-      summary: "Lista o estado vinculado ao id passado no parametro"
+      summary: Lista o estado pelo Id
       responses:
         200:
           description: OK
@@ -112,13 +112,55 @@ paths:
             application/json:
               example: "Not found"
     delete:
+      summary: Deleta um estado pelo Id
       responses:
         200: 
           description: Deletado com sucesso
         500:
           description: Id inexistente
-  
-        
+    put:
+      summary: Atualiza um Estado pelo Id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                regiao:
+                  type: string
+                populacao:
+                  type: integer
+                capital:
+                  type: string
+                area:
+                  type: integer
+      responses:
+        200:
+          description: Atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object  
+                properties:
+                  id:
+                    type: integer
+                  nome:
+                    type: string
+                  capital:
+                    type: string
+                  populacao:
+                    type: integer
+                  regiao:
+                    type: string
+                  area:
+                    type: integer
+        500:
+          description: Id inexistente
+          
+        400:
+          description: Região inválida
       
          
          
