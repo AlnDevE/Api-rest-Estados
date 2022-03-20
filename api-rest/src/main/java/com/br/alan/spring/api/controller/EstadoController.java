@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
 
@@ -38,7 +40,7 @@ public class EstadoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<EstadoDto> cadastrar(@RequestBody EstadoForm estadoForm, UriComponentsBuilder uribuilder){
+    public ResponseEntity<EstadoDto> cadastrar(@RequestBody @Valid EstadoForm estadoForm, UriComponentsBuilder uribuilder){
         Estado estado = estadoForm.converter();
         estadoRepository.save(estado);
         URI uri = uribuilder.path("/api/states/{id}").buildAndExpand(estado.getId()).toUri();

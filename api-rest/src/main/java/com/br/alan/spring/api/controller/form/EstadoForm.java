@@ -2,16 +2,26 @@ package com.br.alan.spring.api.controller.form;
 import com.br.alan.spring.api.modelo.Estado;
 import com.br.alan.spring.api.modelo.Regiao;
 import com.br.alan.spring.api.repository.EstadoRepository;
+import com.sun.istack.NotNull;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotEmpty;
 
 public class EstadoForm {
 
+    @NotNull @NotEmpty
     private String nome;
+
+    @NotNull @NotEmpty
     private String capital;
+
+    @NotNull
     private Long populacao;
+
+    @NotNull
     private Long area;
+
     @Enumerated(EnumType.STRING)
     private Regiao regiao;
 
