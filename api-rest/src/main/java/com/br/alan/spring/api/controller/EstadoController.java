@@ -3,6 +3,7 @@ package com.br.alan.spring.api.controller;
 import com.br.alan.spring.api.controller.dto.EstadoDto;
 import com.br.alan.spring.api.controller.form.EstadoForm;
 import com.br.alan.spring.api.modelo.Estado;
+import com.br.alan.spring.api.modelo.Regiao;
 import com.br.alan.spring.api.repository.EstadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,14 +27,14 @@ public class EstadoController {
     private EstadoRepository estadoRepository;
 
     @GetMapping
-    public Page<EstadoDto> listar(@RequestParam(required = false) String nome,
+    public Page<EstadoDto> listar(@RequestParam (required = false)Regiao regiao,
                                   @PageableDefault(sort = "id",direction = Sort.Direction.ASC, page = 0, size = 27) Pageable pagina) {
 
-        if (nome == null) {
+        if (regiao == null) {
             Page<Estado> estados = estadoRepository.findAll(pagina);
             return EstadoDto.converte(estados);
         } else {
-            Page<Estado> estados = estadoRepository.findByNome(nome, pagina);
+            Page<Estado> estados = estadoRepository.findByRegiao(regiao, pagina);
             return EstadoDto.converte(estados);
         }
     }
